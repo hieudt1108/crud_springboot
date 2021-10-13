@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Management Product</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="/">Product Management System</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+</nav>
+<br>
+<br>
+<div class = "container">
+    <div class = "row">
+        <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class = "text-center"> Update Product </h1>
+            <div class = "card-body">
+                <form th:action="@{/admin/update}" th:object = "${Product}" method="POST">
+                    <div class ="form-group">
+                        <input type="hidden" th:field="*{id}" />
+<!--                        <label> ID </label>-->
+<!--                        <input-->
+<!--                                type = "text"-->
+<!--                                name = "id"-->
+<!--                                th:field = "*{id}"-->
+<!--                                class = "form-control"-->
+<!--                                readonly-->
+<!--                        />-->
+<!--                    </div>-->
+                    <div class ="form-group">
+                        <label> Name </label>
+                        <input
+                                type = "text"
+                                name = "name"
+                                th:field = "*{name}"
+                                class = "form-control"
+
+                        />
+                    </div>
+                    <div class ="form-group">
+                        <label> Price </label>
+                        <input
+                                type = "text"
+                                name = "price"
+                                th:field = "*{price}"
+                                class = "form-control"
+
+                        />
+                    </div>
+                    <div class ="form-group">
+                        <label> CategoryID </label>
+                        <input
+                                type = "text"
+                                name = "categoryID"
+                                th:field = "*{categoryID}"
+                                class = "form-control"
+
+                        />
+                    </div>
+                    <div class ="form-group">
+                        <label> Detail </label>
+                        <input
+                                type = "text"
+                                name = "detail"
+                                th:field = "*{detail}"
+                                class = "form-control"
+
+                        />
+                    </div>
+                    <div class ="form-group">
+                        <label> Stock </label>
+                        <input
+                                type = "text"
+                                name = "stock"
+                                th:field = "*{stock}"
+                                class = "form-control"
+
+                        />
+                    </div>
+                    <div class ="form-group">
+                        <label> Image </label>
+                        <img th:src="*{image}" class = "form-control" />
+                        <input
+                                type = "text"
+                                name = "image"
+                                th:field = "*{image}"
+                                class = "form-control"
+
+                        />
+                    </div>
+
+
+
+                    <div class = "box-footer">
+                        <button type="submit" class = "btn btn-primary">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

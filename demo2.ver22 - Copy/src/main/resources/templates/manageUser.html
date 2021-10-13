@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Management Product</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="../">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="d-flex" th:action="@{/admin/search/users}" method="GET">
+                <input class="form-control me-2" th:name="name" type="search" th:placeholder="${name}"
+                       aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+
+        </div>
+    </div>
+</nav>
+
+<div class="row" th:if="${!userPage.hasContent()}">
+    <div class="col">
+        <div class="alert alert-danger" role="alert"></div>
+        <strong>Not Found</strong>
+    </div>
+</div>
+
+
+<table class="table" th:if="${userPage.hasContent()}">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">username</th>
+        <th scope="col">fullname</th>
+        <th scope="col">email</th>
+        <th scope="col">phonenumber</th>
+        <th scope="col">address</th>
+        <th scope="col">enable</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user, iStat : ${userPage.content}">
+        <td th:text="${user.id}"></td>
+
+        <td th:text="${user.username}"></td>
+
+        <td th:text="${user.fullname}"></td>
+
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.phonenumber}"></td>
+
+        <td th:text="${user.address}"></td>
+        <td th:text="${user.enable}"></td>
+        <td th:if="${user.enable==true}">
+            <a th:href="@{/admin/user/disable(id=${user.id})}" class="btn btn-primary">Disable</a>
+
+        </td>
+        <td th:if="${user.enable==false}">
+            <a th:href="@{/admin/user/enable(id=${user.id})}" class="btn btn-danger">Enable</a>
+
+        </td>
+
+
+    </tr>
+
+
+    </tbody>
+</table>
+<!--<div class="card-footer text-muted">-->
+<!--    <nav aria-label="Page navigation"-->
+<!--         th:if="${userPage.totalPages >0}">-->
+<!--        <ul class="pagination justify-content-center">-->
+<!--            <li th:class="${1==userPage.number +1} ?'page-item active' : 'page-item'">-->
+<!--                <a th:href="@{/admin/search/(name=${name},page=${1})}"-->
+<!--                   th:class="page-link">First-->
+<!--                </a>-->
+<!--            </li>-->
+
+<!--            <li class="page-item active"-->
+<!--                th:each="pageNumber : ${pageNumbers}"-->
+<!--                th:if="${userPage.totalPages>1}"-->
+<!--                th:class="${pageNumber == userPage.number+1} ? 'page-item active' :'page-item' ">-->
+<!--                <a th:href="@{/admin/search(name=${name},page=${pageNumber})}"-->
+<!--                   th:class="page-link"-->
+<!--                   th:text="${pageNumber}">-->
+<!--                </a>-->
+<!--            </li>-->
+
+<!--            <li th:class="${ userPage.totalPages == userPage.number +1} ?'page-item active' : 'page-item'">-->
+<!--                <a th:href="@{/admin/search(name=${name},page=${userPage.totalPages})}"-->
+<!--                   th:class="page-link">Last-->
+<!--                </a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </nav>-->
+<!--</div>-->
+</body>
+</html>
